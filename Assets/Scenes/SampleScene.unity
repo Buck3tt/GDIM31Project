@@ -254,6 +254,8 @@ MonoBehaviour:
   backgrounds:
   - {fileID: 8346394563358504505, guid: 69001cc2b40a70e47965a478a4b531ff, type: 3}
   - {fileID: 7082506638500006018, guid: 6168463dba2d7f84d92ac7f75517cdcf, type: 3}
+  - {fileID: 7239819015987022466, guid: fdc6753395f6fd542945365d74c9ff46, type: 3}
+  baseSpeed: 10
 --- !u!1 &1615588412
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1615588417}
-  movementForce: 20
+  movementForce: 0.2
 --- !u!61 &1615588416
 BoxCollider2D:
   m_ObjectHideFlags: 0

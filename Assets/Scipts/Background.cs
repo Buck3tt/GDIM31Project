@@ -6,17 +6,13 @@ public class Background : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private float MoveSpeed = 15f;
+    private float speedMultiplyer = 0f;
 
-    public float moveSpeed { get; private set; }
+    public float speedMult { get; private set; }
 
     [SerializeField]
     private int lengthMin, lengthMax;
 
-    [SerializeField]
-    private Vector2 bgDimentions, bgSpawn;
-
-    public Vector2 dimentions { get; private set; }
     public int repeats { get; private set; } 
 
     public Vector3 ReSetPoint { get; private set; }
@@ -25,12 +21,11 @@ public class Background : MonoBehaviour
 
     void Awake()
     {
-        moveSpeed = MoveSpeed;
+        speedMult = speedMultiplyer;
         repeats = Random.Range(lengthMin, lengthMax);
         //transform.position = new Vector3(bgSpawn.x, bgSpawn.y, 0.1f);
-        ReSetPoint = new Vector3(-(bgDimentions.x - bgSpawn.x), bgSpawn.y);
+        ReSetPoint = new Vector3(-(transform.localScale.x - transform.position.x), transform.position.y);
         Debug.Log(ReSetPoint);
-        dimentions = bgDimentions;
     }
 
     // Update is called once per frame
