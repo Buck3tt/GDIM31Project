@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.A))
+        /*if(Input.GetKey(KeyCode.A))
         {
             toApplyMove += new Vector3(-movementForce, 0, 0);
         }
@@ -38,7 +38,8 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.S))
         {
             toApplyMove += new Vector3(0, -movementForce, 0);
-        }
+        }*/
+        toApplyMove = new Vector3(Input.GetAxis("Horizontal") * movementForce, Input.GetAxis("Vertical") * movementForce);
     }
 
     private void FixedUpdate()

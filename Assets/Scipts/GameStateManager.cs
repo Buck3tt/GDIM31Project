@@ -54,17 +54,29 @@ public class GameStateManager : MonoBehaviour
             repeated = 0;
             currentBG = 0;
             backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
+
             spawnBG();
         }
         else
         {
             repeated++;
-            if (repeated == backgroundList[0].repeats)
+            if (repeated >= backgroundList[0].repeats && currentBG < backgroundList.Count)
             {
+                repeated = 0;
                 currentBG++;
             }
+            else if (repeated >= backgroundList[0].repeats)
+            {
+                repeated = 0;
+                currentBG = 0;
+            }
+            /*if(repeated >= backgroundList[0].repeats)
+            {
+                currentBG++;
+                repeated = 0;
+            }*/
             backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
-            backgroundList[1].transform.position = new Vector3(backgroundList[0].dimentions.x, 0f, 0.1f);
+            backgroundList[1].transform.position = new Vector3(backgroundList[0].dimentions.x + backgroundList[1].transform.position.x, 0f, 0.1f);
         }
         
     }
