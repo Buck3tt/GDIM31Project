@@ -6,14 +6,14 @@ public class Background : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private float speedMultiplyer = 0f;
+    private float moveSpeed = 10f;
 
-    public float speedMult { get; private set; }
+    //public float speedMult { get; private set; }
 
-    [SerializeField]
-    private int lengthMin, lengthMax;
+    //[SerializeField]
+    //private int lengthMin, lengthMax;
 
-    public int repeats { get; private set; } 
+    //public int repeats { get; private set; } 
 
     public Vector3 ReSetPoint { get; private set; }
 
@@ -21,17 +21,17 @@ public class Background : MonoBehaviour
 
     void Awake()
     {
-        speedMult = speedMultiplyer;
-        repeats = Random.Range(lengthMin, lengthMax);
+        //speedMult = speedMultiplyer;
+        //repeats = Random.Range(lengthMin, lengthMax);
         //transform.position = new Vector3(bgSpawn.x, bgSpawn.y, 0.1f);
-        ReSetPoint = new Vector3(-(transform.localScale.x - transform.position.x), transform.position.y);
+        ReSetPoint = new Vector3((transform.position.x - transform.localScale.x), transform.position.y);
         Debug.Log(ReSetPoint);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.position -= new Vector3(MoveSpeed * Time.deltaTime, 0f, 0f);
+        transform.position -= new Vector3(moveSpeed * GameStateManager.msMult * Time.deltaTime, 0f, 0f);
     }
 
 }
