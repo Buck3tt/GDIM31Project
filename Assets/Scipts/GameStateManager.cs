@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class GameStateManager : MonoBehaviour
     [SerializeField]
     private float baseSpeed = 10f;
 
+    //public GameStateManager instance;
+    //private static GameObject[] backgrounds;
+    //private static float baseSpeed;
+
     private int currentBG;
     private float msMult = 1f;
     //private Background Background; 
@@ -18,17 +23,25 @@ public class GameStateManager : MonoBehaviour
     private List<Background> backgroundList;
     private int repeated;
 
+
     void Start()
     {
         //Debug.Log(spawnedBg.Count);
+        //instance = this;
         backgroundList = new List<Background>();
         spawnBG();
     }
 
+    /*public void OnAfterDeserialize()
+    {
+        backgrounds = bgPrefabs;
+        baseSpeed = defaultSpeed;
+    }*/
+
     // Update is called once per frame
     void Update()
     {
-        moveBG();
+        //moveBG();
     }
 
     private void moveBG()
@@ -44,14 +57,19 @@ public class GameStateManager : MonoBehaviour
             //Debug.Log(backgroundList[0].ReSetPoint.x);
             
 
-            GameObject past = backgroundList[0].gameObject;
-            backgroundList.RemoveAt(0);
-            Destroy(past);
-            spawnBG();
+            
             
 
         }
 
+    }
+
+    public void nextBG ()
+    {
+        GameObject past = backgroundList[0].gameObject;
+        backgroundList.RemoveAt(0);
+        Destroy(past);
+        spawnBG();
     }
     private void spawnBG()
     {
@@ -90,7 +108,18 @@ public class GameStateManager : MonoBehaviour
             }
 
         }
+        SetAllMoveable();
         
+    }
+
+    private void SetAllMoveable ()
+    {
+        var moveAble = FindObjectsOfType<MonoBehaviour>().OfType<MovementObject>();
+
+        foreach(MovementObject move in moveAble)
+        {
+            move.SetMovement(baseSpeed * msMult);
+        }
     }
 }
 public enum GameState

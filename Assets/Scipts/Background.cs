@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Background : MonoBehaviour
+public class Background : MonoBehaviour, MovementObject
 {
     // Start is called before the first frame update
     [SerializeField]
@@ -17,6 +17,7 @@ public class Background : MonoBehaviour
 
     public Vector3 ReSetPoint { get; private set; }
 
+    private float movespeed = 0f;
 
 
     void Awake()
@@ -31,7 +32,15 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position -= new Vector3(MoveSpeed * Time.deltaTime, 0f, 0f);
+        transform.position -= new Vector3(movespeed * Time.deltaTime, 0f, 0f);
+        if(transform.position.x <= ReSetPoint.x)
+        {
+            FindObjectOfType<GameStateManager>().nextBG();
+        }
     }
 
+    void MovementObject.SetMovement(float movement)
+    {
+        movespeed = movement;
+    }
 }
