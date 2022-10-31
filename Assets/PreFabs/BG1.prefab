@@ -97,8 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22957ee835da84d47ae0aa52a52c2565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 5
-  lengthMin: 3
-  lengthMax: 5
-  bgDimentions: {x: 35, y: 10}
-  bgSpawn: {x: 8.75, y: 0}
+  moveSpeed: 10

@@ -4,93 +4,60 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
     private GameObject [] backgrounds;
 
     [SerializeField]
-    private float baseSpeed = 10f;
+    private float[] speedCheckpoints;
 
-    private int currentBG;
-    private float msMult = 1f;
-    //private Background Background; 
+    public static float msMult { get; private set; }
 
     private List<Background> backgroundList;
-    private int repeated;
+
+    private int currentBG;
+
 
     void Start()
     {
-        //Debug.Log(spawnedBg.Count);
+        currentBG = 0;
+        msMult = 1f;
         backgroundList = new List<Background>();
+        backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
         spawnBG();
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveBG();
+        updateBG();
     }
 
-    private void moveBG()
+    private void updateBG()
     {
-        //Debug.Log(backgroundList[0].transform.position);
-        for (int i = 0; i< backgroundList.Count; i++)
-        {
-            backgroundList[i].transform.position -= new Vector3(baseSpeed * msMult * Time.deltaTime, 0f, 0f);
-            //Debug.Log(backgroundList[i].transform.position);
-        }
         if (backgroundList[0].transform.position.x <= backgroundList[0].ReSetPoint.x)
         {
-            //Debug.Log(backgroundList[0].ReSetPoint.x);
-            
-
             GameObject past = backgroundList[0].gameObject;
             backgroundList.RemoveAt(0);
             Destroy(past);
             spawnBG();
-            
-
         }
-
     }
+
     private void spawnBG()
     {
-        if (backgroundList.Count == 0)
+        if(speedCheckpoints[currentBG] <= (Time.realtimeSinceStartup % 61) && currentBG < speedCheckpoints.Length-1)
         {
-            repeated = 0;
+            currentBG++;
+            msMult += .5f;
+        }
+        else if (speedCheckpoints[currentBG] <= (Time.realtimeSinceStartup % 61))
+        {
             currentBG = 0;
-            backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
-            msMult += backgroundList[0].speedMult;
-            spawnBG();
+            msMult += .5f;
         }
-        else
-        {
-            repeated++;
-            
-            if (repeated >= backgroundList[0].repeats && currentBG < backgrounds.Length-1)
-            {
-                repeated = 0;
-                currentBG++;
-                
-            }
-            else if (repeated >= backgroundList[0].repeats)
-            {
-                repeated = 0;
-                currentBG = 0;
-
-            }
-            
-            backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
-            //backgroundList[1].transform.position = new Vector3(backgroundList[0].dimentions.x + backgroundList[1].transform.position.x - (msMult -0.1f), 0f, 0.1f);
-            float bgPos = backgroundList[0].transform.position.x + backgroundList[0].transform.localScale.x - (backgroundList[0].transform.localScale.x - backgroundList[1].transform.localScale.x) / 2f;
-            backgroundList[1].transform.position = new Vector3(bgPos, 0f, 0.1f);
-            if (repeated == 1 || backgroundList[0].repeats == 1)
-            {
-                msMult += backgroundList[0].speedMult;
-            }
-
-        }
-        
+        backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
+        float bgPos = backgroundList[0].transform.position.x + backgroundList[0].transform.localScale.x - (backgroundList[0].transform.localScale.x - backgroundList[1].transform.localScale.x) / 2f;
+        backgroundList[1].transform.position = new Vector3(bgPos - 0.2f, 0f, 0.1f);     
     }
 }
 public enum GameState
