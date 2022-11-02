@@ -24,7 +24,7 @@ public class BackgroundSpawner : MonoBehaviour
 
     private int currentBG;
 
-    private float timestart;
+    private static float timestart;
     private static int currentpoints = 0;
 
     void Start()
@@ -45,10 +45,7 @@ public class BackgroundSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Time.time - timestart == (int)Time.time - (int)timestart)
-        {
-            currentpoints += PointsPerSecond;
-        }
+        currentpoints += PointsPerSecond;
         scoredisplay.GetComponent<TextMeshProUGUI>().text = $"{currentpoints}";
     }
 
@@ -70,12 +67,12 @@ public class BackgroundSpawner : MonoBehaviour
 
     private void spawnBG()
     {
-        if(speedCheckpoints[currentBG] <= (Time.realtimeSinceStartup % 61) && currentBG < speedCheckpoints.Length-1)
+        if(speedCheckpoints[currentBG] <= ((Time.time - timestart) % 61) && currentBG < speedCheckpoints.Length-1)
         {
             currentBG++;
             msMult += .5f;
         }
-        else if (speedCheckpoints[currentBG] <= (Time.realtimeSinceStartup % 61))
+        else if (speedCheckpoints[currentBG] <= ((Time.time - timestart) % 61))
         {
             currentBG = 0;
             msMult += .5f;
@@ -83,6 +80,12 @@ public class BackgroundSpawner : MonoBehaviour
         backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
         float bgPos = backgroundList[0].transform.position.x + backgroundList[0].transform.localScale.x - (backgroundList[0].transform.localScale.x - backgroundList[1].transform.localScale.x) / 2f;
         backgroundList[1].transform.position = new Vector3(bgPos - 0.2f, 0f, 0.1f);     
+    }
+
+    public static void ResetGameState()
+    {
+        currentpoints = 0;
+        timestart = Time.time;
     }
 }
 public enum GameState

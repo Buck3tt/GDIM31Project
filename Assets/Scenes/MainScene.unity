@@ -476,7 +476,7 @@ MonoBehaviour:
   - 10
   - 30
   - 60
-  PointsPerSecond: 10
+  PointsPerSecond: 1
   scoredisplay: {fileID: 1564986878}
 --- !u!1 &1513603294
 GameObject:
