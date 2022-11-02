@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -10,12 +12,20 @@ public class GameStateManager : MonoBehaviour
     [SerializeField]
     private float[] speedCheckpoints;
 
+    [SerializeField]
+    private int PointsPerSecond;
+
+    [SerializeField]
+    private GameObject scoredisplay;
+
     public static float msMult { get; private set; }
 
     private List<Background> backgroundList;
 
     private int currentBG;
 
+    private float timestart;
+    private static int currentpoints = 0;
 
     void Start()
     {
@@ -23,6 +33,7 @@ public class GameStateManager : MonoBehaviour
         msMult = 1f;
         backgroundList = new List<Background>();
         backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
+        timestart = Time.time;
         spawnBG();
     }
 
@@ -30,6 +41,20 @@ public class GameStateManager : MonoBehaviour
     void Update()
     {
         updateBG();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Time.time == (int)Time.time)
+        {
+            currentpoints += PointsPerSecond;
+        }
+        scoredisplay.GetComponent<TextMeshProUGUI>().text = $"{currentpoints}";
+    }
+
+    public static int currentScore()
+    {
+        return currentpoints;
     }
 
     private void updateBG()

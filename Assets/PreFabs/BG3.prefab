@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7239819015987022716}
   - component: {fileID: 7239819015987022467}
   - component: {fileID: 4590792738340143187}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BG3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22957ee835da84d47ae0aa52a52c2565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplyer: 0.3
-  lengthMin: 4
-  lengthMax: 6
+  moveSpeed: 10

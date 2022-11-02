@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7082506638500006028}
   - component: {fileID: 7082506638500006029}
   - component: {fileID: 7082506638500006031}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BG2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,8 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22957ee835da84d47ae0aa52a52c2565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplyer: 0.2
-  lengthMin: 1
-  lengthMax: 1
-  bgDimentions: {x: 20, y: 0}
-  bgSpawn: {x: 0.75, y: 0}
+  moveSpeed: 10

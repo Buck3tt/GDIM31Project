@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -21,5 +22,17 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rb.position += new Vector2(Input.GetAxis("Horizontal") * movementForce, Input.GetAxis("Vertical") * movementForce);
+    }
+
+    public void Death()
+    {
+        //GameStateManager.currentScore()
+        
+        if (SaveSystem.LoadPlayerHighScore() < GameStateManager.currentScore())
+        {
+            SaveSystem.SavePlayerHighScore(GameStateManager.currentScore());
+        }
+        SceneManager.LoadScene(0);
+        Destroy(this.gameObject);
     }
 }
