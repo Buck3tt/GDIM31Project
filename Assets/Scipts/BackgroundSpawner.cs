@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameStateManager : MonoBehaviour
+public class BackgroundSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject [] backgrounds;
@@ -45,7 +45,7 @@ public class GameStateManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Time.time == (int)Time.time)
+        if (Time.time - timestart == (int)Time.time - (int)timestart)
         {
             currentpoints += PointsPerSecond;
         }

@@ -25,13 +25,13 @@ public class Background : MonoBehaviour
         //repeats = Random.Range(lengthMin, lengthMax);
         //transform.position = new Vector3(bgSpawn.x, bgSpawn.y, 0.1f);
         ReSetPoint = new Vector3((transform.position.x - transform.localScale.x), transform.position.y);
-        Debug.Log(ReSetPoint);
+        //Debug.Log(ReSetPoint);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position -= new Vector3(moveSpeed * GameStateManager.msMult * Time.deltaTime, 0f, 0f);
+        transform.position -= new Vector3(moveSpeed * BackgroundSpawner.msMult * Time.deltaTime, 0f, 0f);
     }
 
 }
