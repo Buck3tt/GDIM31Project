@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
     {
         //GameStateManager.currentScore()
         
-        if (SaveSystem.LoadPlayerHighScore() < BackgroundSpawner.currentScore())
+        if (SaveSystem.LoadPlayerHighScore() < GameStateManager.currentScore())
         {
-            SaveSystem.SavePlayerHighScore(BackgroundSpawner.currentScore());
+            SaveSystem.SavePlayerHighScore(GameStateManager.currentScore());
         }
         SceneManager.LoadScene(0);
         Destroy(this.gameObject);

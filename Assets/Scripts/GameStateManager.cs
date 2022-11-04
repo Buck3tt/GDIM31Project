@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BackgroundSpawner : MonoBehaviour
+public class GameStateManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject [] backgrounds;
@@ -31,8 +31,10 @@ public class BackgroundSpawner : MonoBehaviour
     {
         currentBG = 0;
         msMult = 1f;
-        backgroundList = new List<Background>();
-        backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
+        backgroundList = new List<Background>
+        {
+            Instantiate(backgrounds[currentBG]).GetComponent<Background>()
+        };
         timestart = Time.time;
         spawnBG();
     }

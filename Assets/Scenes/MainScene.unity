@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 290309448}
   - component: {fileID: 290309449}
   m_Layer: 0
-  m_Name: ObsticalDespawn
+  m_Name: ObstacleDespawn
   m_TagString: Despawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 489625476}
   - component: {fileID: 489625477}
   m_Layer: 0
-  m_Name: ObsticalDespawn (1)
+  m_Name: ObstacleDespawn (1)
   m_TagString: Despawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 1379455517}
   - component: {fileID: 1379455518}
   m_Layer: 0
-  m_Name: BackgroundSpawner
+  m_Name: GameStateManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 1513603296}
   - component: {fileID: 1513603295}
   m_Layer: 0
-  m_Name: ObsticalSpawner
+  m_Name: ObstacleSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -507,9 +507,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb10b72e7e509b449f7800afd02429e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsticalsPrefab:
-  - {fileID: 7112437507679695324, guid: da4365fa9cf4ff94b9fe1bf80fe6f32b, type: 3}
+  obstaclePrefabs:
   - {fileID: 315946021308564101, guid: f2fb4403a6a443640917eb4f7c01ed4c, type: 3}
+  - {fileID: 7112437507679695324, guid: da4365fa9cf4ff94b9fe1bf80fe6f32b, type: 3}
   - {fileID: 8151001962078784657, guid: 7662a4662795b8a4b87b8ebcdac8de0b, type: 3}
   spawnLocation: {x: 6, y: 6, z: 0}
 --- !u!4 &1513603296

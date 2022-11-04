@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstical : MonoBehaviour
+public class Obstacle : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
@@ -43,6 +43,6 @@ public class Obstical : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position -= (Vector3) movement * (BackgroundSpawner.msMult) * Time.deltaTime;
+        transform.position -= (Vector3) movement * (GameStateManager.msMult) * Time.deltaTime;
     }
 }
