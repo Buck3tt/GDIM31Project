@@ -102,6 +102,7 @@ MonoBehaviour:
   minTime: 0.5
   maxTime: 3
   movement: {x: 10, y: 3}
+  damage: 5
 --- !u!50 &7413565496030991781
 Rigidbody2D:
   serializedVersion: 4

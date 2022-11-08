@@ -11,6 +11,9 @@ public class Obstacle : MonoBehaviour
     [SerializeField]
     private Vector2 movement;
 
+    [SerializeField]
+    private float damage = 1f;
+
 
     public float minSpawnTime { get; private set; }
     public float maxSpawnTime { get; private set; }
@@ -28,7 +31,7 @@ public class Obstacle : MonoBehaviour
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             Debug.Log("Hit Player");
-            collision.gameObject.GetComponent<Player>().Death();
+            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
         }
         
     }

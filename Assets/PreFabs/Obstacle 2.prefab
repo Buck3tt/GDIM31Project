@@ -149,3 +149,4 @@ MonoBehaviour:
   minTime: 1
   maxTime: 2
   movement: {x: 10, y: 6}
+  damage: 5

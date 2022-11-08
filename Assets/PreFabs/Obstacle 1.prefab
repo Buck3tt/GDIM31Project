@@ -102,6 +102,7 @@ MonoBehaviour:
   minTime: 1
   maxTime: 3
   movement: {x: 10, y: 9.8}
+  damage: 10
 --- !u!61 &3649120769547298555
 BoxCollider2D:
   m_ObjectHideFlags: 0
