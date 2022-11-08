@@ -84,6 +84,12 @@ public class GameStateManager : MonoBehaviour
         backgroundList[1].transform.position = new Vector3(bgPos - 0.2f, 0f, 0.1f);     
     }
 
+    public static void ChangeMs(float modifier)
+    {
+        Debug.Log($"Movement Speed Changed by {modifier}");
+        msMult += modifier;
+    }
+
     public static void ResetGameState()
     {
         currentpoints = 0;

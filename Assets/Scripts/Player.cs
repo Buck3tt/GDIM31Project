@@ -20,7 +20,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Image hp;
 
-    // Start is called before the first frame update
+    private bool damageable = true;
+
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,6 +38,10 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (!damageable)
+        {
+            return;
+        }
         currentHealth = Mathf.Clamp(currentHealth-damage, 0, maxHealth);
 
         if (currentHealth == 0f)
@@ -45,6 +51,21 @@ public class Player : MonoBehaviour
         else
         {
             hp.fillAmount = currentHealth / maxHealth;
+        }
+    }
+
+    public void HealDamage(float heal)
+    {
+        
+        currentHealth = Mathf.Clamp(currentHealth+heal, 0, maxHealth);
+        Debug.Log($"Play healed for max of {heal} health");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Powerup"))
+        {
+            collision.gameObject.GetComponent<PowerUp>().usepowerup();
         }
     }
     public void Death()
@@ -59,3 +80,4 @@ public class Player : MonoBehaviour
         Destroy(this.gameObject);
     }
 }
+
