@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Image hp;
 
-    private bool damageable = true;
+    private DamageState state = DamageState.Normal;
 
     
     void Start()
@@ -38,11 +38,21 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!damageable)
+        /*if (!damageable)
         {
             return;
+        }*/
+        switch (state) {
+            case DamageState.Normal:
+                currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+                break;
+            case DamageState.DoubledDamage:
+                currentHealth = Mathf.Clamp(currentHealth - (2 * damage), 0, maxHealth);
+                break;
+            case DamageState.Immune:
+                return;
         }
-        currentHealth = Mathf.Clamp(currentHealth-damage, 0, maxHealth);
+        
 
         if (currentHealth == 0f)
         {
@@ -79,5 +89,23 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(0);
         Destroy(this.gameObject);
     }
+
+    public void ChangeDamageState(DamageState state)
+    {
+        Debug.Log($"The player damage state has changed to {state}");
+        this.state = state;
+    }
+
+    public DamageState getPlayerState ()
+    {
+        return state;
+    }
+
+    
+}
+
+public enum DamageState
+{
+    Normal, DoubledDamage, Immune
 }
 

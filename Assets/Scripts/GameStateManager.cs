@@ -26,9 +26,11 @@ public class GameStateManager : MonoBehaviour
 
     private static float timestart;
     private static int currentpoints = 0;
+    private float NextPoint = 0;
 
     void Start()
     {
+        scoredisplay.GetComponent<TextMeshProUGUI>().text = $"{currentpoints}";
         currentBG = 0;
         msMult = 1f;
         backgroundList = new List<Background>
@@ -36,6 +38,7 @@ public class GameStateManager : MonoBehaviour
             Instantiate(backgrounds[currentBG]).GetComponent<Background>()
         };
         timestart = Time.time;
+        NextPoint = timestart + 1;
         spawnBG();
     }
 
@@ -47,8 +50,11 @@ public class GameStateManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        currentpoints += PointsPerSecond;
-        scoredisplay.GetComponent<TextMeshProUGUI>().text = $"{currentpoints}";
+        if (Time.time >= NextPoint) {
+            currentpoints += PointsPerSecond;
+            NextPoint++;
+            scoredisplay.GetComponent<TextMeshProUGUI>().text = $"{currentpoints}";
+        }
     }
 
     public static int currentScore()

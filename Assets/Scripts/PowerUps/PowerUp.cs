@@ -10,7 +10,4 @@ public interface PowerUp
 
 }
 
-public enum PowerUpType
-{
-    SpeedIncrease, SpeedDecrease, TakeDamage, HealDamage, Invonerability
-}
+
