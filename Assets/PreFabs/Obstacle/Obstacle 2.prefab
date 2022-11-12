@@ -148,5 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minTime: 1
   maxTime: 2
-  movement: {x: 10, y: 6}
+  movement: {x: 4, y: 6}
   damage: 5

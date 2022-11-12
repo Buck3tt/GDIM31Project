@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Image hp;
 
+    //private List<Bonus>
+
+    [SerializeField]
     private DamageState state = DamageState.Normal;
 
     

@@ -18,6 +18,9 @@ public class GameStateManager : MonoBehaviour
     [SerializeField]
     private GameObject scoredisplay;
 
+    [SerializeField]
+    private float MSChange = 0.1f;
+
     public static float msMult { get; private set; }
 
     private List<Background> backgroundList;
@@ -78,12 +81,12 @@ public class GameStateManager : MonoBehaviour
         if(speedCheckpoints[currentBG] <= ((Time.time - timestart) % 61) && currentBG < speedCheckpoints.Length-1)
         {
             currentBG++;
-            msMult += .5f;
+            msMult += MSChange;
         }
         else if (speedCheckpoints[currentBG] <= ((Time.time - timestart) % 61))
         {
             currentBG = 0;
-            msMult += .5f;
+            msMult += MSChange;
         }
         backgroundList.Add(Instantiate(backgrounds[currentBG]).GetComponent<Background>());
         float bgPos = backgroundList[0].transform.position.x + backgroundList[0].transform.localScale.x - (backgroundList[0].transform.localScale.x - backgroundList[1].transform.localScale.x) / 2f;
