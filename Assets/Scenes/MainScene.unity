@@ -944,9 +944,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementForce: 0.2
-  maxHealth: 100
+  maxHealth: 10
   hp: {fileID: 1543018414}
-  state: 2
+  state: 0
 --- !u!61 &1615588416
 BoxCollider2D:
   m_ObjectHideFlags: 0

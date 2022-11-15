@@ -84,11 +84,8 @@ public class Player : MonoBehaviour
     public void Death()
     {
         //GameStateManager.currentScore()
-        
-        if (SaveSystem.LoadPlayerHighScore() < GameStateManager.currentScore())
-        {
-            SaveSystem.SavePlayerHighScore(GameStateManager.currentScore());
-        }
+        PlayerData data = new PlayerData(GameStateManager.currentScore());
+        SaveSystem.SavePlayerHighScore(data);
         SceneManager.LoadScene(0);
         Destroy(this.gameObject);
     }
