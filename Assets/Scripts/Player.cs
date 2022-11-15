@@ -32,6 +32,21 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    private void resetValues ()
+    {
+        currentHealth = maxHealth;
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
+
+    void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
 
     private void FixedUpdate()
     {
@@ -84,10 +99,11 @@ public class Player : MonoBehaviour
     public void Death()
     {
         //GameStateManager.currentScore()
-        PlayerData data = new PlayerData(GameStateManager.currentScore());
+        PlayerData data = new PlayerData(GameSpawnnerManager.currentScore());
         SaveSystem.SavePlayerHighScore(data);
         SceneManager.LoadScene(0);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        GameStateManager.Instance.SetState(GameState.Dead);
     }
 
     public void ChangeDamageState(DamageState state)
@@ -101,7 +117,22 @@ public class Player : MonoBehaviour
         return state;
     }
 
-    
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        switch (newGameState)
+        {
+            case GameState.Menu:
+                break;
+            case GameState.Playing:
+                break;
+            case GameState.Paused:
+                break;
+            case GameState.Dead:
+                resetValues();
+                Destroy(gameObject);
+                break;
+        }
+    }
 }
 
 public enum DamageState

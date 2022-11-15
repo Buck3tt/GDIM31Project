@@ -22,13 +22,21 @@ public class BoatMover : MonoBehaviour
     {
         startposition = transform.position;
         endposition = endpos;
-        this.speed = speed * GameStateManager.msMult;
+        this.speed = speed * GameSpawnnerManager.msMult;
         this.ob = ob;
         startTime = Time.time;
         distance = Vector3.Distance(transform.position, endpos);
         this.parrent = parrent;
     }
+    void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
 
+    void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -62,6 +70,22 @@ public class BoatMover : MonoBehaviour
         if(collision.transform.CompareTag("Despawn"))
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        switch (newGameState)
+        {
+            case GameState.Menu:
+                break;
+            case GameState.Playing:
+                break;
+            case GameState.Paused:
+                break;
+            case GameState.Dead:
+                Destroy(gameObject);
+                break;
         }
     }
 }

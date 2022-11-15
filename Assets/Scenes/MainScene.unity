@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 1379455517}
   - component: {fileID: 1379455518}
   m_Layer: 0
-  m_Name: GameStateManager
+  m_Name: GameSpawnnerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

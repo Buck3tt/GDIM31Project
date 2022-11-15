@@ -47,6 +47,6 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position -= (Vector3) movement * (GameStateManager.msMult) * Time.deltaTime;
+        transform.position -= (Vector3) movement * (GameSpawnnerManager.msMult) * Time.deltaTime;
     }
 }

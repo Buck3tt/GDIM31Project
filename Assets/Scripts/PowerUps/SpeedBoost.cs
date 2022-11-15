@@ -15,19 +15,19 @@ public class SpeedBoost : MonoBehaviour, PowerUp
 
     private void Update()
     {
-        transform.position -= new Vector3(ms * GameStateManager.msMult * Time.deltaTime, 0f, 0f);
+        transform.position -= new Vector3(ms * GameSpawnnerManager.msMult * Time.deltaTime, 0f, 0f);
     }
 
     public void endpowerup()
     {
-        GameStateManager.ChangeMs(-SpeedIncrease);
+        GameSpawnnerManager.ChangeMs(-SpeedIncrease);
         Destroy(this.gameObject);
     }
 
     public void usepowerup()
     {
         Debug.Log("Player Hit Powerup");
-        GameStateManager.ChangeMs(SpeedIncrease);
+        GameSpawnnerManager.ChangeMs(SpeedIncrease);
         StartCoroutine(endboost());
         gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -44,6 +44,32 @@ public class SpeedBoost : MonoBehaviour, PowerUp
         if (collision.CompareTag("Despawn"))
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
+
+    void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
+
+    public void OnGameStateChanged(GameState newGameState)
+    {
+        switch (newGameState)
+        {
+            case GameState.Menu:
+                break;
+            case GameState.Playing:
+                break;
+            case GameState.Paused:
+                break;
+            case GameState.Dead:
+                endpowerup();
+                break;
         }
     }
 }

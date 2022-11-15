@@ -8,6 +8,7 @@ public interface PowerUp
 
     void endpowerup();
 
+    void OnGameStateChanged(GameState newGameState);
 }
 
 
