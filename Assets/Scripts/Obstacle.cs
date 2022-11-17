@@ -22,7 +22,12 @@ public class Obstacle : MonoBehaviour
     {
         minSpawnTime = minTime;
         maxSpawnTime = maxTime;
-       
+
+       //diversifies movement so no corners are safe
+       if(gameObject.transform.position.x < 0)
+        {
+            movement.x *= -1;
+        }
     }
 
 
