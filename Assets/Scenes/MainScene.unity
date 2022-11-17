@@ -1249,6 +1249,7 @@ MonoBehaviour:
   movementForce: 0.2
   maxHealth: 10
   hp: {fileID: 1543018414}
+  mainCamera: {fileID: 519420031}
   state: 0
 --- !u!61 &1615588416
 BoxCollider2D:

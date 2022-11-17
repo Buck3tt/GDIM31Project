@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Image hp;
 
+    [SerializeField]
+    private Camera mainCamera;
+
     //private List<Bonus>
     public enum DamageState
     {
@@ -65,6 +68,13 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rb.position += new Vector2(Input.GetAxis("Horizontal") * movementForce, Input.GetAxis("Vertical") * movementForce);
+
+        //binds movement within camera frame, numbers could use some adjusting to be more exact
+        float minY = -mainCamera.orthographicSize + gameObject.transform.localScale.y;
+        float maxY = minY * -1;
+        float minX = -(mainCamera.orthographicSize * mainCamera.aspect) + gameObject.transform.localScale.x;
+        float maxX = minX * -1;
+        rb.position = new Vector2(Mathf.Clamp(rb.position.x, minX, maxX), Mathf.Clamp(rb.position.y, minY, maxY));
     }
 
 
