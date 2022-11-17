@@ -12,17 +12,6 @@ public class MainMenu : MonoBehaviour
     private TextMeshProUGUI Highscore, LastScore;
     // Start is called before the first frame update
 
-    void Awake()
-    {
-        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
-        GameStateManager.Instance.SetState(GameState.Menu);
-        Debug.Log(GameStateManager.Instance.CurrentGameState);
-    }
-
-    void OnDestroy()
-    {
-        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
-    }
     void Start()
     {
         try
@@ -41,9 +30,10 @@ public class MainMenu : MonoBehaviour
     public void PlayGame ()
     {
         //GameSpawnnerManager.ResetGameState();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        GameStateManager.Instance.SetState(GameState.Playing);
-        Debug.Log(GameStateManager.Instance.CurrentGameState);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //GameStateManager.Instance.SetState(GameState.Playing);
+        //Debug.Log(GameStateManager.Instance.CurrentGameState);
+        GameStateManager.NewGame();
     }
 
 
@@ -51,13 +41,5 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("QUIT!");
         Application.Quit();
-    }
-
-    private void OnGameStateChanged(GameState newGameState)
-    {
-        if(newGameState != GameState.Menu)
-        {
-            Destroy(gameObject);
-        }
     }
 }

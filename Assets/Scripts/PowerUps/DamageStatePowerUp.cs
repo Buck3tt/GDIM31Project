@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageStatePowerUp : MonoBehaviour, PowerUp
 {
     [SerializeField]
-    private DamageState powerUp;
+    private Player.DamageState powerUp;
 
     [SerializeField]
     private float durration;
@@ -17,11 +17,11 @@ public class DamageStatePowerUp : MonoBehaviour, PowerUp
 
     private void Update()
     {
-        transform.position -= new Vector3(ms * GameSpawnnerManager.msMult * Time.deltaTime, 0f, 0f);
+        transform.position -= new Vector3(ms * GameStateManager.msMult * Time.deltaTime, 0f, 0f);
     }
     public void endpowerup()
     {
-        player.ChangeDamageState(DamageState.Normal);
+        player.ChangeDamageState(Player.DamageState.Normal);
         Destroy(this.gameObject);
     }
 
@@ -46,32 +46,6 @@ public class DamageStatePowerUp : MonoBehaviour, PowerUp
         if (collision.CompareTag("Despawn"))
         {
             Destroy(this.gameObject);
-        }
-    }
-
-    void Awake()
-    {
-        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
-    }
-
-    void OnDestroy()
-    {
-        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
-    }
-
-    public void OnGameStateChanged(GameState newGameState)
-    {
-        switch (newGameState)
-        {
-            case GameState.Menu:
-                break;
-            case GameState.Playing:
-                break;
-            case GameState.Paused:
-                break;
-            case GameState.Dead:
-                endpowerup();
-                break;
         }
     }
 }

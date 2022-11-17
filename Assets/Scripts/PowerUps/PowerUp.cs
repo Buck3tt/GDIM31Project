@@ -7,8 +7,6 @@ public interface PowerUp
     void usepowerup();
 
     void endpowerup();
-
-    void OnGameStateChanged(GameState newGameState);
 }
 
 

@@ -21,10 +21,12 @@ public class Player : MonoBehaviour
     private Image hp;
 
     //private List<Bonus>
-
+    public enum DamageState
+    {
+        Normal, DoubledDamage, Immune
+    }
     [SerializeField]
     private DamageState state = DamageState.Normal;
-
     
     void Start()
     {
@@ -36,16 +38,6 @@ public class Player : MonoBehaviour
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    void Awake()
-    {
-        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
-    }
-
-    void OnDestroy()
-    {
-        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
     }
 
     private void FixedUpdate()
@@ -99,11 +91,11 @@ public class Player : MonoBehaviour
     public void Death()
     {
         //GameStateManager.currentScore()
-        PlayerData data = new PlayerData(GameSpawnnerManager.currentScore());
+        PlayerData data = new PlayerData(GameStateManager.GetScore());
         SaveSystem.SavePlayerHighScore(data);
-        SceneManager.LoadScene(0);
+        GameStateManager.GameOver();
         //Destroy(this.gameObject);
-        GameStateManager.Instance.SetState(GameState.Dead);
+        //GameStateManager.Instance.SetState(GameState.Dead);
     }
 
     public void ChangeDamageState(DamageState state)
@@ -112,31 +104,9 @@ public class Player : MonoBehaviour
         this.state = state;
     }
 
-    public DamageState getPlayerState ()
+    public DamageState GetPlayerState()
     {
         return state;
     }
-
-    private void OnGameStateChanged(GameState newGameState)
-    {
-        switch (newGameState)
-        {
-            case GameState.Menu:
-                break;
-            case GameState.Playing:
-                break;
-            case GameState.Paused:
-                break;
-            case GameState.Dead:
-                resetValues();
-                Destroy(gameObject);
-                break;
-        }
-    }
-}
-
-public enum DamageState
-{
-    Normal, DoubledDamage, Immune
 }
 

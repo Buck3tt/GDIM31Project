@@ -31,7 +31,7 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position -= new Vector3(moveSpeed * GameSpawnnerManager.msMult * Time.deltaTime, 0f, 0f);
+        transform.position -= new Vector3(moveSpeed * GameStateManager.msMult * Time.deltaTime, 0f, 0f);
     }
 
 }

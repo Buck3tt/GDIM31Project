@@ -31,16 +31,6 @@ public class ObstacleSpawner : MonoBehaviour
 
     [SerializeField]
     private GameObject[] SpawnedObjectParents;
-
-    void Awake()
-    {
-        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
-    }
-
-    void OnDestroy()
-    {
-        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
-    }
     void Start()
     {
         nextSpawn = Time.time;
@@ -63,7 +53,7 @@ public class ObstacleSpawner : MonoBehaviour
             int num = Random.Range(0, obstaclePrefabs.Length);
             Obstacle ob = obstaclePrefabs[num].GetComponent<Obstacle>();
             Instantiate(boatprefab, new Vector3(path[0] - buffer[0], main.orthographicSize - buffer[2]), Quaternion.identity, SpawnedObjectParents[0].transform).GetComponent<BoatMover>().SetValues(pos, boatMS, ob, SpawnedObjectParents[1]);
-            nextSpawn += Random.Range(ob.minSpawnTime, ob.maxSpawnTime) + (Vector3.Distance(new Vector3(path[0] - buffer[0], main.orthographicSize - buffer[2]), pos) / (boatMS* GameSpawnnerManager.msMult));
+            nextSpawn += Random.Range(ob.minSpawnTime, ob.maxSpawnTime) + (Vector3.Distance(new Vector3(path[0] - buffer[0], main.orthographicSize - buffer[2]), pos) / (boatMS* GameStateManager.msMult));
         }
     }
 
@@ -77,24 +67,4 @@ public class ObstacleSpawner : MonoBehaviour
         Debug.Log(nextSpawn);
         Debug.Log(CurrentTime);
     }
-
-    private void OnGameStateChanged(GameState newGameState)
-    {
-        switch (newGameState)
-        {
-            case GameState.Menu:
-                resetState();
-                break;
-            case GameState.Playing:
-                break;
-            case GameState.Paused:
-                break;
-            case GameState.Dead:
-                resetState();
-                Destroy(gameObject);
-                break;
-        }
-    }
-
-
 }
