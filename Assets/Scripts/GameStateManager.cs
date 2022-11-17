@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class GameStateManager : MonoBehaviour
         Menu, Playing, Paused, Dead
     }
     private static GAMESTATE currentState;
+    public static Action OnPause;
 
     private float timeStart;
     private int currentPoints;
@@ -57,7 +59,7 @@ public class GameStateManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //GameStateManager.TogglePause();
+            GameStateManager.TogglePause();
         }
         
         if(currentState == GAMESTATE.Playing && SpeedCheckpointReached())
@@ -130,6 +132,17 @@ public class GameStateManager : MonoBehaviour
 
     public static void TogglePause()
     {
+        if(currentState == GAMESTATE.Playing)
+        {
+            currentState = GAMESTATE.Paused;
+            Time.timeScale = 0;
+            OnPause();
+        }
+        else if(currentState == GAMESTATE.Paused)
+        {
+            currentState = GAMESTATE.Playing;
+            Time.timeScale = 1;
+        }
 
     }
 
