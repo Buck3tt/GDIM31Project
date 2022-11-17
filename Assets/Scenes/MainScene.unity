@@ -1245,6 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bae87d5210bfe4b9afd5cdbbf3c1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1615588413}
   movementForce: 0.2
   maxHealth: 10
   hp: {fileID: 1543018414}

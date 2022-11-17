@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
     private float movementForce;
 
     private Vector3 toApplyMove;
@@ -38,6 +41,25 @@ public class Player : MonoBehaviour
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if(spriteRenderer != null)
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if(spriteRenderer != null)
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
     }
 
     private void FixedUpdate()
