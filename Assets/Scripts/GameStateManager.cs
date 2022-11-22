@@ -96,6 +96,7 @@ public class GameStateManager : MonoBehaviour
             nextPoint++;
             UpdateScore();
         }
+        
     }
 
     private void UpdateScore()

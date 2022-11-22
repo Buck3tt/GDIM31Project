@@ -126,7 +126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heal: 10
-  ms: 10
+  ms: {x: 5, y: 3}
+  minTime: 3
+  maxTime: 5
 --- !u!50 &6103719966677519460
 Rigidbody2D:
   serializedVersion: 4

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageStatePowerUp : MonoBehaviour, PowerUp
 {
+
     [SerializeField]
     private Player.DamageState powerUp;
 
@@ -11,13 +12,16 @@ public class DamageStatePowerUp : MonoBehaviour, PowerUp
     private float durration;
 
     [SerializeField]
-    private float ms = 10f;
+    private Vector2 ms;
 
     private Player player;
 
+    [SerializeField]
+    private float minTime, maxTime;
+
     private void Update()
     {
-        transform.position -= new Vector3(ms * GameStateManager.msMult * Time.deltaTime, 0f, 0f);
+        transform.position -= (Vector3)(ms) * GameStateManager.msMult * Time.deltaTime;
     }
     public void endpowerup()
     {
@@ -47,5 +51,10 @@ public class DamageStatePowerUp : MonoBehaviour, PowerUp
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public float getTime()
+    {
+        return Random.Range(minTime, maxTime);
     }
 }

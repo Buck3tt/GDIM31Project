@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpeedBoost : MonoBehaviour, PowerUp
 {
+    
+    
     [SerializeField]
     private float durration = 2f;
 
@@ -11,17 +13,20 @@ public class SpeedBoost : MonoBehaviour, PowerUp
     private float SpeedIncrease = 0.2f;
 
     [SerializeField]
-    private float ms = 10f;
+    private Vector2 ms;
+
+    [SerializeField]
+    private float minTime, maxTime;
 
     private void Update()
     {
-        transform.position -= new Vector3(ms * GameStateManager.msMult * Time.deltaTime, 0f, 0f);
+        transform.position -= (Vector3)(ms) * GameStateManager.msMult * Time.deltaTime;
     }
 
     public void endpowerup()
     {
         GameStateManager.ChangeMs(-SpeedIncrease);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     public void usepowerup()
@@ -43,7 +48,12 @@ public class SpeedBoost : MonoBehaviour, PowerUp
     {
         if (collision.CompareTag("Despawn"))
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
+    }
+
+    public float getTime()
+    {
+        return Random.Range(minTime, maxTime);
     }
 }

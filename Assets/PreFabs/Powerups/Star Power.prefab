@@ -101,7 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUp: 2
   durration: 2
-  ms: 10
+  ms: {x: 4, y: 3}
+  minTime: 6
+  maxTime: 10
 --- !u!61 &7886560356956798380
 BoxCollider2D:
   m_ObjectHideFlags: 0

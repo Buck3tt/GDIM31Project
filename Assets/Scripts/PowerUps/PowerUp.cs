@@ -7,6 +7,14 @@ public interface PowerUp
     void usepowerup();
 
     void endpowerup();
+
+    float getTime();
+
+    //float weight();
 }
+
+public enum PowerUpType { Immune, DoubleDamage, SpeedUp, SpeedDown, Heal}
+
+
 
 

@@ -7,7 +7,7 @@ public class BoatMover : MonoBehaviour
     private Vector3 startposition;
     private Vector3 endposition;
     private float speed;
-    private Obstacle ob;
+    private GameObject ob;
 
     private float startTime;
     private float distance;
@@ -18,7 +18,7 @@ public class BoatMover : MonoBehaviour
     bool atPos = false;
 
     private GameObject parrent;
-    public void SetValues(Vector3 endpos, float speed, Obstacle ob, GameObject parrent)
+    public void SetValues(Vector3 endpos, float speed, GameObject ob, GameObject parrent)
     {
         startposition = transform.position;
         endposition = endpos;
