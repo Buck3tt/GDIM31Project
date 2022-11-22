@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            hp.fillAmount = currentHealth / maxHealth;
+            UpdateHealth();
         }
     }
 
@@ -110,7 +110,13 @@ public class Player : MonoBehaviour
     {
         
         currentHealth = Mathf.Clamp(currentHealth+heal, 0, maxHealth);
+        UpdateHealth();
         Debug.Log($"Play healed for max of {heal} health");
+    }
+
+    private void UpdateHealth()
+    {
+        hp.fillAmount = currentHealth / maxHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -134,11 +140,27 @@ public class Player : MonoBehaviour
     {
         Debug.Log($"The player damage state has changed to {state}");
         this.state = state;
+        switch (state)
+        {
+            case DamageState.Normal:
+                hp.color = new Color(255, 255, 255, 1);
+                break;
+            case DamageState.DoubledDamage:
+                break;
+            case DamageState.Immune:
+                hp.color = new Color(255, 255, 0, 1);
+                break;
+        }
     }
 
     public DamageState GetPlayerState()
     {
         return state;
+    }
+
+    public Image GetHealthImage()
+    {
+        return hp;
     }
 }
 
