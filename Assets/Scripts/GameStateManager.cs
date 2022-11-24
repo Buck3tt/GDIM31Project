@@ -149,6 +149,7 @@ public class GameStateManager : MonoBehaviour
 
     public static void GameOver()
     {
+        _instance.scoreDisplay.ClearMesh();
         currentState = GAMESTATE.Menu;
         SceneManager.LoadScene(_instance.menuSceneName);
     }
