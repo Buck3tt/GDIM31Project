@@ -44,8 +44,12 @@ public class BackgroundSpawner : MonoBehaviour
     private void SpawnBG()
     {
         backgroundList.Add(Instantiate(backgrounds[currentBG]));
-        float bgPos = backgroundList[0].transform.position.x + backgroundList[0].transform.localScale.x - (backgroundList[0].transform.localScale.x - backgroundList[1].transform.localScale.x) / 2f;
-        backgroundList[1].transform.position = new Vector3(bgPos - 0.2f, 0f, 0.1f);     
+        float bgPos = backgroundList[0].transform.position.x + backgroundList[0].GetBGWidth() - (backgroundList[0].GetBGWidth() - backgroundList[1].GetBGWidth()) / 2f;
+
+        backgroundList[1].transform.position = new Vector3(bgPos+(1-GameStateManager.msMult)/2f, 0f, 0.5f);
+        Debug.Log(backgroundList[0].transform.position.x + backgroundList[0].GetBGWidth());
+        Debug.Log(backgroundList[0].GetBGWidth());
+        Debug.Log(backgroundList[1].GetBGWidth());
     }
 
     public void ChangeBackground()

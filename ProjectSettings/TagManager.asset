@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Despawn
   - Powerup
+  - Backgrounds
   layers:
   - Default
   - TransparentFX
