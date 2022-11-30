@@ -49,6 +49,7 @@ public class DamageStatePowerUp : MonoBehaviour, PowerUp
         {
             switch(health.color.a.ToString())
             {
+                //0.5 is just the standard amount of time for heart to blink
                 case "0":
                     health.color = new Color(health.color.r, health.color.g, health.color.b, 1);
                     yield return new WaitForSeconds(0.5f);
@@ -60,7 +61,6 @@ public class DamageStatePowerUp : MonoBehaviour, PowerUp
                     break;
             }
         }
-        //yield return new WaitForSeconds(durration);
         endpowerup();
     }
 

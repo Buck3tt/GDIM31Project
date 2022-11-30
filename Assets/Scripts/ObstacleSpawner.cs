@@ -86,17 +86,6 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-    private void resetState()
-    {
-        nextSpawn = 0f;
-        CurrentTime = Time.time;
-        //main = Camera.current;
-        float width = ((2f * main.orthographicSize) * main.aspect) / 2f;
-        path = new float[] { (-width + buffer[0]), (width - buffer[1]) };
-        Debug.Log(nextSpawn);
-        Debug.Log(CurrentTime);
-    }
-
     
     private int PowerUpPicker() {
         int[] weights = weightTable.Values.ToArrayPooled();

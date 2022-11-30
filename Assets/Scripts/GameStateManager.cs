@@ -83,8 +83,8 @@ public class GameStateManager : MonoBehaviour
 
     private bool SpeedCheckpointReached()
     {
-        //should be a more elegant way to mod the time without the 0.001f
-        float modifiedTime = (Time.time - timeStart) % (speedCheckpoints[^1] + 0.001f);
+        //0.0001f makes sure the modding is accurate to loop backgrounds
+        float modifiedTime = (Time.time - timeStart) % (speedCheckpoints[^1] + 0.0001f);
         return speedCheckpoints[currentCheckpoint] <= modifiedTime;
     }
 

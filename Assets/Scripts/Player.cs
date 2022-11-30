@@ -40,12 +40,6 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void resetValues ()
-    {
-        currentHealth = maxHealth;
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -131,12 +125,9 @@ public class Player : MonoBehaviour
     }
     public void Death()
     {
-        //GameStateManager.currentScore()
         PlayerData data = new PlayerData(GameStateManager.GetScore());
         SaveSystem.SavePlayerHighScore(data);
         GameStateManager.GameOver();
-        //Destroy(this.gameObject);
-        //GameStateManager.Instance.SetState(GameState.Dead);
     }
 
     public void ChangeDamageState(DamageState state)

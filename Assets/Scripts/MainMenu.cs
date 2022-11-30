@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI Highscore, LastScore;
-    // Start is called before the first frame update
 
     void Start()
     {
@@ -29,10 +28,6 @@ public class MainMenu : MonoBehaviour
     
     public void PlayGame ()
     {
-        //GameSpawnnerManager.ResetGameState();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //GameStateManager.Instance.SetState(GameState.Playing);
-        //Debug.Log(GameStateManager.Instance.CurrentGameState);
         GameStateManager.NewGame();
     }
 
