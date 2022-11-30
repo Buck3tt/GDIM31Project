@@ -72,6 +72,7 @@ public class ObstacleSpawner : MonoBehaviour
                 Obstacle ob = obstaclePrefabs[num].GetComponent<Obstacle>();
                 Instantiate(boatprefab, new Vector3(path[0] - buffer[0], main.orthographicSize - buffer[2]), Quaternion.identity, SpawnedObjectParents[0].transform).GetComponent<BoatMover>().SetValues(pos, boatMS, obstaclePrefabs[num], SpawnedObjectParents[1]);
                 nextSpawn += Random.Range(ob.minSpawnTime, ob.maxSpawnTime) + (Vector3.Distance(new Vector3(path[0] - buffer[0], main.orthographicSize - buffer[2]), pos) / (boatMS * GameStateManager.msMult));
+                FindObjectOfType<AudioManager>().Play("ObstacleSpawn");
             }
             else
             {

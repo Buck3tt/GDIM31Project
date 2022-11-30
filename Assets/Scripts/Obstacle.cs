@@ -38,6 +38,7 @@ public class Obstacle : MonoBehaviour
             Debug.Log("Hit Player");
             collision.gameObject.GetComponent<Player>().TakeDamage(damage);
             Destroy(this.gameObject);
+            FindObjectOfType<AudioManager>().Play("PlayerHit");
         }
         
     }

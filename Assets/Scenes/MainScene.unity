@@ -180,7 +180,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &254665792
 MonoBehaviour:
@@ -461,17 +461,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0.48
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 8ab6b87aa54d2984ba5ed2ab3b2015b4, type: 3}
+    volume: 0.28
     pitch: 0.71
     loop: 0
     source: {fileID: 0}
   - name: Background Music
     clip: {fileID: 8300000, guid: 1cfdbff1f93135849b2b18d151367e82, type: 3}
-    volume: 0.17
+    volume: 0.09
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: PlayerHit
+    clip: {fileID: 8300000, guid: 2d5de51f6f39aeb4ba9782ae1c40358f, type: 3}
+    volume: 0.36
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerHeal
+    clip: {fileID: 8300000, guid: 87a99a4e3a2b7e44690fca21e5c0c1c8, type: 3}
+    volume: 0.36
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ObstacleSpawn
+    clip: {fileID: 8300000, guid: 2ed7d8f0f347e7b43af89c03d093123e, type: 3}
+    volume: 0.36
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!4 &611120832
 Transform:
@@ -486,7 +504,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &879754050
 GameObject:
@@ -1967,7 +1985,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2588098354114628136, guid: b494545054859544cb0804718b244d21, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2588098354114628136, guid: b494545054859544cb0804718b244d21, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2141,7 +2159,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3874596816035433563, guid: 1cb839bed4f01c247a4c819f597c7b03, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3874596816035433563, guid: 1cb839bed4f01c247a4c819f597c7b03, type: 3}
       propertyPath: m_LocalPosition.x

@@ -99,6 +99,8 @@ public class Player : MonoBehaviour
         if (currentHealth == 0f)
         {
             Death();
+
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
         }
         else
         {
@@ -112,6 +114,7 @@ public class Player : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth+heal, 0, maxHealth);
         UpdateHealth();
         Debug.Log($"Play healed for max of {heal} health");
+        FindObjectOfType<AudioManager>().Play("PlayerHeal");
     }
 
     private void UpdateHealth()
