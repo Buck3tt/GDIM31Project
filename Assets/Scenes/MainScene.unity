@@ -535,6 +535,18 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: SpeedUp
+    clip: {fileID: 8300000, guid: 05f4edfba29f74a418876f33e6201346, type: 3}
+    volume: 0.17
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PowerUp
+    clip: {fileID: 8300000, guid: 5b54bd00a09b2614b8b2d106bbf5263d, type: 3}
+    volume: 0.21
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &611120832
 Transform:
   m_ObjectHideFlags: 0

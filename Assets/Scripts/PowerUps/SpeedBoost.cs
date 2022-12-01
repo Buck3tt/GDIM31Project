@@ -36,6 +36,7 @@ public class SpeedBoost : MonoBehaviour, PowerUp
         StartCoroutine(endboost());
         gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        FindObjectOfType<AudioManager>().Play("SpeedUp");
     }
 
     IEnumerator endboost()

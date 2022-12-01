@@ -189,6 +189,7 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Powerup"))
         {
             collision.gameObject.GetComponent<PowerUp>().usepowerup();
+            FindObjectOfType<AudioManager>().Play("PowerUp");
         }
     }
     public void Death()
