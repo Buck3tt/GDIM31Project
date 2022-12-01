@@ -26,6 +26,8 @@ public class Background : MonoBehaviour
         transform.position -= new Vector3(moveSpeed * GameStateManager.msMult * Time.deltaTime, 0f, 0f);
     }
 
+
+
     public float GetBGWidth()
     {
         int num = 0;

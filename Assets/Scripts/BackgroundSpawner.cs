@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class BackgroundSpawner : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class BackgroundSpawner : MonoBehaviour
     private List<Background> backgroundList;
 
     private static int currentBG;
+
 
     void Start()
     {
@@ -37,19 +39,27 @@ public class BackgroundSpawner : MonoBehaviour
             GameObject pastBackground = backgroundList[0].gameObject;
             backgroundList.RemoveAt(0);
             Destroy(pastBackground);
+            if (backgroundList.Count < 2)
+                SpawnBG();
+        }
+        else if ((backgroundList[backgroundList.Count - 2].GetBGWidth() - backgroundList[backgroundList.Count-1].GetBGWidth()) > 0)
+        {
+           
             SpawnBG();
+            
         }
     }
 
     private void SpawnBG()
     {
         backgroundList.Add(Instantiate(backgrounds[currentBG]));
-        float bgPos = backgroundList[0].transform.position.x + backgroundList[0].GetBGWidth() - (backgroundList[0].GetBGWidth() - backgroundList[1].GetBGWidth()) / 2f;
+        int current = backgroundList.Count - 2;
+        int next = current + 1;
 
-        backgroundList[1].transform.position = new Vector3(bgPos+(1-GameStateManager.msMult)/2f, 0f, 0.5f);
-        Debug.Log(backgroundList[0].transform.position.x + backgroundList[0].GetBGWidth());
-        Debug.Log(backgroundList[0].GetBGWidth());
-        Debug.Log(backgroundList[1].GetBGWidth());
+        float bgPos = backgroundList[current].transform.position.x + backgroundList[current].GetBGWidth() - (backgroundList[current].GetBGWidth() - backgroundList[next].GetBGWidth()) / 2f;
+
+        backgroundList[next].transform.position = new Vector3(bgPos - (GameStateManager.msMult-1f), 0f, 0.9f);
+       
     }
 
     public void ChangeBackground()

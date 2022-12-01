@@ -43,23 +43,27 @@ public class DamageStatePowerUp : MonoBehaviour, PowerUp
         StartCoroutine(EndDamageState(player.GetHealthImage()));
     }
 
-    IEnumerator EndDamageState (Image health)
+    IEnumerator EndDamageState (List<Image> hearts)
     {
         while(Time.time - startTime < durration)
         {
-            switch(health.color.a.ToString())
+            foreach (Image health in hearts)
             {
-                //0.5 is just the standard amount of time for heart to blink
-                case "0":
-                    health.color = new Color(health.color.r, health.color.g, health.color.b, 1);
-                    yield return new WaitForSeconds(0.5f);
-                    break;
+                switch (health.color.a.ToString())
+                {
+                    //0.5 is just the standard amount of time for heart to blink
+                    case "0":
+                        health.color = new Color(health.color.r, health.color.g, health.color.b, 1);
+                        
+                        break;
 
-                case "1":
-                    health.color = new Color(health.color.r, health.color.g, health.color.b, 0);
-                    yield return new WaitForSeconds(0.5f);
-                    break;
+                    case "1":
+                        health.color = new Color(health.color.r, health.color.g, health.color.b, 0);
+                        //yield return new WaitForSeconds(0.5f);
+                        break;
+                }
             }
+            yield return new WaitForSeconds(0.5f);
         }
         endpowerup();
     }

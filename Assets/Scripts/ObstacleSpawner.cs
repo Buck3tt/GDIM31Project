@@ -31,6 +31,9 @@ public class ObstacleSpawner : MonoBehaviour
     private float boatMS = 2f;
 
     [SerializeField]
+    private float boatDelay = 2f;
+
+    [SerializeField]
     private GameObject[] SpawnedObjectParents;
 
     [SerializeField]
@@ -41,7 +44,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     public static Dictionary<PowerUpType, int> weightTable = new Dictionary<PowerUpType, int>()
     {
-        {PowerUpType.Immune, 1 },
+        {PowerUpType.Immune, 20 },
         {PowerUpType.DoubleDamage, 20 },
         {PowerUpType.SpeedUp, 40 },
         {PowerUpType.SpeedDown, 40 },
@@ -54,8 +57,6 @@ public class ObstacleSpawner : MonoBehaviour
         //main = Camera.current;
         float width = ((2f * main.orthographicSize) * main.aspect) / 2f;
         path = new float[] { (-width + buffer[0]), (width - buffer[1]) };
-        Debug.Log(nextSpawn);
-        Debug.Log(CurrentTime);
 
     }
 
@@ -71,7 +72,7 @@ public class ObstacleSpawner : MonoBehaviour
                 int num = Random.Range(0, obstaclePrefabs.Length);
                 Obstacle ob = obstaclePrefabs[num].GetComponent<Obstacle>();
                 Instantiate(boatprefab, new Vector3(path[0] - buffer[0], main.orthographicSize - buffer[2]), Quaternion.identity, SpawnedObjectParents[0].transform).GetComponent<BoatMover>().SetValues(pos, boatMS, obstaclePrefabs[num], SpawnedObjectParents[1]);
-                nextSpawn += Random.Range(ob.minSpawnTime, ob.maxSpawnTime) + (Vector3.Distance(new Vector3(path[0] - buffer[0], main.orthographicSize - buffer[2]), pos) / (boatMS * GameStateManager.msMult));
+                nextSpawn += Random.Range(ob.minSpawnTime, ob.maxSpawnTime) + (Vector3.Distance(new Vector3(path[0] - buffer[0], main.orthographicSize - buffer[2]), pos) / (boatMS * GameStateManager.msMult) + boatDelay);
                 FindObjectOfType<AudioManager>().Play("ObstacleSpawn");
             }
             else
