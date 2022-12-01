@@ -116,9 +116,11 @@ public class Player : MonoBehaviour
         switch (state) {
             case DamageState.Normal:
                 currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+                FindObjectOfType<AudioManager>().Play("PlayerHit");
                 break;
             case DamageState.DoubledDamage:
                 currentHealth = Mathf.Clamp(currentHealth - (2 * damage), 0, maxHealth);
+                FindObjectOfType<AudioManager>().Play("PlayerHit");
                 break;
             case DamageState.Immune:
                 return;
